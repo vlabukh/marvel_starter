@@ -16,7 +16,7 @@ class MarvelService {
   }
   getCharacter = async (id) => {
     const res = await this.getResource(`${this._apiBase}characters/${id}?${this._apiKey}`)
-    console.log(res, this._transformCharacter(res.data.results[0]))
+    // console.log(res, this._transformCharacter(res.data.results[0]))
     return this._transformCharacter(res.data.results[0])
   }
   _transformDescription = (desc, lng) => {
@@ -26,6 +26,7 @@ class MarvelService {
   _transformCharacter = (char) => {
     const {name, description, thumbnail, urls} = char
     return {
+      id: char.id,
       name,
       description: this._transformDescription(description, 100),
       thumbnail: thumbnail.path + '.' + thumbnail.extension,
