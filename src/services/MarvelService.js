@@ -21,17 +21,18 @@ class MarvelService {
   }
   _transformDescription = (desc, lng) => {
     if (desc === '') return 'There is no description for this character'
-    else if (desc.length > lng) return desc.slice(0, lng) + '...'
+    else return desc.slice(0, lng) + '...'
   }
   _transformCharacter = (char) => {
-    const {name, description, thumbnail, urls} = char
+    const {name, description, thumbnail, urls, comics} = char
     return {
       id: char.id,
       name,
       description: this._transformDescription(description, 100),
       thumbnail: thumbnail.path + '.' + thumbnail.extension,
       homepage: urls[0].url,
-      wiki: urls[1].url
+      wiki: urls[1].url,
+      comics: comics.items
     }
   }
 }

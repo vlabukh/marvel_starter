@@ -6,6 +6,12 @@ import './randomChar.scss'
 import mjolnir from '../../resources/img/mjolnir.png'
 
 class RandomChar extends Component {
+  state = {
+    char: {},
+    loading: true,
+    error: false
+  }
+  marvelService = new MarvelService()
   componentDidMount() {
     this.updateChar()
     // this.timerId = setInterval(this.updateChar, 3000)
@@ -13,12 +19,7 @@ class RandomChar extends Component {
   componentWillUnmount() {
     clearInterval(this.timerId)
   }
-  state = {
-    char: {},
-    loading: true,
-    error: false
-  }
-  marvelService = new MarvelService()
+  
   onCharLoaded = (char) => {
     this.setState({
       char,
