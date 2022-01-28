@@ -73,11 +73,17 @@ class CharList extends Component {
         localClassName += '_selected'
       }
       return (
-        <li 
-          ref={localRef}
+        <li
           className={localClassName}
+          ref={localRef}
+          tabIndex={0}
           key={item.id}
-          onClick={() => onCharSelected(item.id)}>
+          onClick={() => onCharSelected(item.id)}
+          onKeyPress={(e) => {
+            if (e.key === ' ' || e.key === 'Enter') {
+              onCharSelected(item.id)
+            }
+          }}>
             <img src={item.thumbnail} alt={item.name} style={imgStyle}/>
             <div className="char__name">{item.name}</div>
         </li>
