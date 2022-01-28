@@ -1,4 +1,4 @@
-import {Component} from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import Spinner from '../spinner/Spinner'
 import ErrorMessage from '../errorMessage/ErrorMessage'
@@ -15,6 +15,7 @@ class CharList extends Component {
     offset: 210,
     charEnded: false
   }
+  activeRef = React.createRef()
   
   marvelService = new MarvelService();
 
@@ -64,12 +65,19 @@ class CharList extends Component {
       if (item.thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
         imgStyle = {'objectFit' : 'unset'}
       }
-      
+      const {selectedChar, onCharSelected} = this.props
+      let localRef = null
+      let localClassName = 'char__item'
+      if (selectedChar === item.id) {
+        localRef = this.activeRef
+        localClassName += '_selected'
+      }
       return (
         <li 
-          className="char__item"
+          ref={localRef}
+          className={localClassName}
           key={item.id}
-          onClick={() => this.props.onCharSelected(item.id)}>
+          onClick={() => onCharSelected(item.id)}>
             <img src={item.thumbnail} alt={item.name} style={imgStyle}/>
             <div className="char__name">{item.name}</div>
         </li>
