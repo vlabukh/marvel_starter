@@ -85,13 +85,13 @@ class CharList extends Component {
             }
           }}>
             <img src={item.thumbnail} alt={item.name} style={imgStyle}/>
-            <div className="char__name">{item.name}</div>
+            <div className='char__name'>{item.name}</div>
         </li>
       )
     })
     // А эта конструкция вынесена для центровки спиннера/ошибки
     return (
-      <ul className="char__grid">
+      <ul className='char__grid'>
         {items}
       </ul>
     )
@@ -107,16 +107,16 @@ class CharList extends Component {
     const content = !(loading || error) ? items : null
 
     return (
-      <div className="char__list">
+      <div className='char__list'>
         {errorMessage}
         {spinner}
         {content}
         <button 
-          className="button button__main button__long"
+          className='button button__main button__long'
           disabled={newItemLoading}
           style={{'display': charEnded ? 'none' : 'block'}}
           onClick={() => this.onRequest(offset)}>
-          <div className="inner">load more</div>
+          <div className='inner'>load more</div>
         </button>
       </div>
     )
