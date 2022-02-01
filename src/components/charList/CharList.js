@@ -70,7 +70,7 @@ class CharList extends Component {
       let localClassName = 'char__item'
       if (selectedChar === item.id) {
         localRef = this.activeRef
-        localClassName += '_selected'
+        localClassName += ' char__item_selected'
       }
       return (
         <li
