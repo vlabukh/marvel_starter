@@ -63,8 +63,6 @@ const CharList = ({onCharSelected, selectedChar}) => {
       let localClassName = 'char__item'
       if (selectedChar === item.id) {
         localRef = activeRef
-        console.log(activeRef.current)
-        console.log(activeRef)
         localClassName += ' char__item_selected'
       }
       return (
