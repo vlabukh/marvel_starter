@@ -6,11 +6,11 @@ import useMarvelService from '../../services/MarvelService'
 import './charList.scss'
 
 const CharList = ({onCharSelected, selectedChar}) => {
-  const {loading, error, getAllCharacters, _baseOffset} = useMarvelService()
+  const {loading, error, getAllCharacters, _baseCharOffset} = useMarvelService()
 
   const [charList, setCharList] = useState([])
   const [newItemLoading, setNewItemLoading] = useState(false)
-  const [offset, setOffset] = useState(_baseOffset)
+  const [offset, setOffset] = useState(_baseCharOffset)
   const [charEnded, setCharEnded] = useState(false)
   
   useEffect(() => {
