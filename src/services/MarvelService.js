@@ -14,7 +14,6 @@ const useMarvelService = () => {
   }
   const getCharacter = async (id) => {
     const res = await request(`${_apiBase}characters/${id}?${_apiKey}`)
-    // console.log(res, this._transformCharacter(res.data.results[0]))
     return _transformCharacter(res.data.results[0])
   }
   const getAllComics = async (offset = _baseComicOffset) => {
@@ -50,7 +49,7 @@ const useMarvelService = () => {
       pageCount: pageCount ? `${pageCount} p.` : 'No information about the number of pages',
       thumbnail: thumbnail.path + '.' + thumbnail.extension,
       language: comic.textObjects.language || 'en-us',
-      price: prices.price ? `${prices.price}` : 'not available'
+      price: prices[0].price ? `${prices[0].price}$` : 'not available'
     }
   }
 

@@ -6,7 +6,8 @@ import ErrorMessage from '../errorMessage/ErrorMessage'
 import Skeleton from '../skeleton/Skeleton'
 import './charInfo.scss'
 
-const CharInfo = ({charId}) => {
+const CharInfo = (props) => {
+  const {charId} = props
   const [char, setChar] = useState(null)
   const {loading, error, getCharacter, clearError} = useMarvelService()
 
