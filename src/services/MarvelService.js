@@ -1,4 +1,4 @@
-import { useHttp } from "../hooks/http.hook"
+import { useHttp } from '../hooks/http.hook'
 
 const useMarvelService = () => {
   const {loading, request, error, clearError} = useHttp()
@@ -10,6 +10,10 @@ const useMarvelService = () => {
 
   const getAllCharacters = async (offset = _baseCharOffset) => {
     const res = await request(`${_apiBase}characters?limit=9&offset=${offset}&${_apiKey}`)
+    return res.data.results.map(_transformCharacter)
+  }
+  const getCharacterByName = async (name) => {
+    const res = await request(`${_apiBase}characters?name=${name}&${_apiKey}`)
     return res.data.results.map(_transformCharacter)
   }
   const getCharacter = async (id) => {
@@ -54,7 +58,7 @@ const useMarvelService = () => {
   }
 
   return {loading, error, clearError,
-    getAllCharacters, getCharacter, _baseCharOffset,
+    getAllCharacters, getCharacterByName, getCharacter, _baseCharOffset,
     getAllComics, getComic, _baseComicOffset,
   }
 }

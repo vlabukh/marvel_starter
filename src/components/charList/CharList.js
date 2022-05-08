@@ -88,7 +88,7 @@ const CharList = ({onCharSelected, selectedChar}) => {
   const errorMessage = error ? <ErrorMessage/> : null
   const spinner = loading && !newItemLoading ? <Spinner/> : null
 
-  console.log('charList!')
+  // console.log('charList!')
   return (
     <div className='char__list'>
       {errorMessage}
