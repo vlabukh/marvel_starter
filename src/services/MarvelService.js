@@ -1,7 +1,7 @@
 import { useHttp } from '../hooks/http.hook'
 
 const useMarvelService = () => {
-  const {loading, request, error, clearError} = useHttp()
+  const {request, clearError, process, setProcess} = useHttp()
 
   const _apiBase = 'https://gateway.marvel.com:443/v1/public/'
   const _apiKey = 'apikey=c1f1d6bf771207bcdbd7651a228e3fef'
@@ -37,7 +37,7 @@ const useMarvelService = () => {
     return {
       id,
       name,
-      description: _transformDescription(description, 100, 'character'),
+      description: _transformDescription(description, 210, 'character'),
       thumbnail: thumbnail.path + '.' + thumbnail.extension,
       homepage: urls[0].url,
       wiki: urls[1].url,
@@ -49,7 +49,7 @@ const useMarvelService = () => {
     return {
       id,
       title,
-      description: _transformDescription(description, 100, 'comic'),
+      description: _transformDescription(description, 210, 'comic'),
       pageCount: pageCount ? `${pageCount} p.` : 'No information about the number of pages',
       thumbnail: thumbnail.path + '.' + thumbnail.extension,
       language: comic.textObjects.language || 'en-us',
@@ -57,7 +57,7 @@ const useMarvelService = () => {
     }
   }
 
-  return {loading, error, clearError,
+  return {clearError, process, setProcess,
     getAllCharacters, getCharacterByName, getCharacter, _baseCharOffset,
     getAllComics, getComic, _baseComicOffset,
   }
