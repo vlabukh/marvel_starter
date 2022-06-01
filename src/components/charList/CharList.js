@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from 'react'
+import {useState, useEffect, useRef, useMemo} from 'react'
 import PropTypes from 'prop-types'
 import {CSSTransition, TransitionGroup} from 'react-transition-group'
 
@@ -65,6 +65,7 @@ const CharList = ({onCharSelected, selectedChar}) => {
   // Этот метод создан для оптимизации, 
   // чтобы не помещать такую конструкцию в метод render
   const renderItems = (arr) => {
+    console.log('render')
     const items =  arr.map((item) => {
       let imgStyle = {'objectFit' : 'cover'}
       if (item.thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
@@ -83,7 +84,7 @@ const CharList = ({onCharSelected, selectedChar}) => {
             ref={localRef}
             tabIndex={0}
             key={item.id}
-            onClick={() => onCharSelected(item.id)}
+            onClick={() => {onCharSelected(item.id)}}
             onKeyPress={(e) => {
               if (e.key === ' ' || e.key === 'Enter') {
                 onCharSelected(item.id)
@@ -105,10 +106,13 @@ const CharList = ({onCharSelected, selectedChar}) => {
     )
   }
 
+  const elements = useMemo(() => {
+    return setContent(process, () => renderItems(charList), newItemLoading)
+  }, [process, onCharSelected])
   // console.log('charList!')
   return (
     <div className='char__list'>
-      {setContent(process, () => renderItems(charList), newItemLoading)}
+      {elements}
       <button 
         className='button button__main button__long'
         disabled={newItemLoading}

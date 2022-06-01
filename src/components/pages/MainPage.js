@@ -8,13 +8,14 @@ import CharSearchForm from '../charSearchForm/CharSearchForm'
 import ErrorBoundary from '../errorBoundary/ErrorBoundary'
 
 import decoration from '../../resources/img/vision.png'
+import { useMemo } from 'react/cjs/react.production.min'
 
 const MainPage = () => {
   const [selectedChar, setChar] = useState(null)
-
   const onCharSelected = (id) => {
     setChar(id)
   }
+  console.log('mp')
   return (
     <HelmetProvider>
       <ErrorBoundary>
